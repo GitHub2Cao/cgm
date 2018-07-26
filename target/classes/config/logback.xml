@@ -121,7 +121,7 @@
 		- 2.level：设置打印级别（TRACE, DEBUG, INFO, WARN, ERROR, ALL 和 OFF），还有一个特殊值INHERITED或者同义词NULL，代表强制执行上级的级别。 - 如果未设置此属性，那么当前logger将会继承上级的级别。 
 		- 3.additivity：为false，表示此logger的打印信息不再向上级传递,如果设置为true，会打印两次 
 		- 4.appender-ref：指定了名字为"STDOUT"的appender。 -->
-	<logger name="org.softnovo." level="DEBUG" additivity="false">
+	<logger name="org.softnovo" level="DEBUG" additivity="true">
 		<!-- <appender-ref ref="STDOUT" /> -->
 		<!--<appender-ref ref="DEBUG"/> -->
 		<!--<appender-ref ref="EXCEPTION"/> -->
