@@ -4,16 +4,15 @@
                       http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	version="3.1" metadata-complete="true">
 	<display-name>cgm</display-name>
-	<!-- 配置DispatcherServlet -->	
+	
+	<!--方案一：激活Tomcat的defaultServlet来处理静态文件-->  
+    <!--要写在DispatcherServlet的前面， 让 defaultServlet先拦截请求，这样请求就不会进入Spring了，我想性能是最好的吧。-->
+	
+	<!-- 配置DispatcherServlet -->
 	<servlet>
 		<servlet-name>seckill-dispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
-		<!-- 配置springMVC需要加载的配置文件
-			spring-dao.xml, spring-service.xml, spring-web.xml
-			Mybatis -> spring -> springMVC 
-			-->
-		
 		 <init-param>
 		 	<param-name>contextConfigLocation</param-name>
 		 	<param-value>classpath:spring/spring-web.xml</param-value>
@@ -53,7 +52,6 @@
         <param-name>log4jConfigLocation</param-name>
         <param-value>classpath:config/log4j.properties</param-value>
     </context-param>
-    
 
 	<!-- 中文乱码 -->
 	<filter>
@@ -69,5 +67,25 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
+	<!--指定欢迎页面-->
+	<welcome-file-list>
+        <welcome-file>/login.html</welcome-file>  
+    </welcome-file-list>
 	
+	<!--当系统出现404错误，跳转到页面nopage.html-->
+	<error-page>   
+        <error-code>404</error-code>  
+        <location>/nopage.html</location>  
+    </error-page>
+    
+    <!--当系统出现java.lang.NullPointerException，跳转到页面error.html-->
+    <error-page>   
+        <exception-type>java.lang.NullPointerException</exception-type>  
+        <location>/error.html</location>  
+    </error-page>
+    
+    <!--会话超时配置，单位分钟-->  
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config> 
 </web-app>
