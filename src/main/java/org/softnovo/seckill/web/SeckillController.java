@@ -14,6 +14,8 @@ import org.softnovo.seckill.exception.RepeatKillException;
 import org.softnovo.seckill.exception.SeckillCloseException;
 import org.softnovo.seckill.service.SeckillService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.EnvironmentAware;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -24,7 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/seckill") //
-public class SeckillController {
+public class SeckillController implements EnvironmentAware {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SeckillController.class);
 	
 	@Autowired
@@ -99,5 +101,10 @@ public class SeckillController {
 		Date now = new Date();
 		return new SeckillResult<Long>(Boolean.TRUE, now.getTime());
 		
+	}
+
+	@Override
+	public void setEnvironment(Environment environment) {
+		System.out.println(environment);
 	}
 }
