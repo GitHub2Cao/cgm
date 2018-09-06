@@ -2,6 +2,7 @@ package org.softnovo.seckill.test.mongo;
 
 import org.bson.Document;
 
+import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
@@ -25,16 +26,14 @@ public class MongoTest {
 		document.put("hhh", 123);
 		document.put("jjj", "jjj");
 		mongoCollection.insertOne(document);
+		
 		System.out.println(")))+)+))+)++ " + mongoCollection.countDocuments());
 		
+		
+		//BasicDBObjectBuilder builder = BasicDBObjectBuilder.start().add(key, val)
 		
 		
 		mongoClient.close();
 		
 	}
-	
-	
-	
-	
-
 }
