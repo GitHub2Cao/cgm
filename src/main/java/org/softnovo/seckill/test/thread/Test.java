@@ -13,9 +13,12 @@ import org.softnovo.seckill.dto.Exposer;
 public class Test {
 	public static void main(String[] args) {
 		try {
-			System.out.println(objectToMap(new Exposer(true, 1)));
-		} catch (SecurityException | IllegalArgumentException | IllegalAccessException e) {
-			// TODO Auto-generated catch block
+			
+			Thread.sleep(1000 * 300L);
+			
+			
+			//System.out.println(objectToMap(new Exposer(true, 1)));
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
