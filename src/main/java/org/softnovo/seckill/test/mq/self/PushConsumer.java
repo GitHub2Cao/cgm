@@ -21,7 +21,7 @@ public class PushConsumer {
 		 * 一个应用创建一个Consumer，由应用来维护此对象，可以设置为全局对象或者单例 注意：ConsumerGroupName需要由应用来保证唯一
 		 */
 		DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("ConsumerGroupName");
-		consumer.setNamesrvAddr("192.168.56.101:9876");
+		consumer.setNamesrvAddr("127.0.0.1:9876");
 		consumer.setInstanceName("Consumber");
 		/**
 		 * 订阅指定topic下tags分别等于TagA或TagC或TagD
@@ -31,6 +31,7 @@ public class PushConsumer {
 		 * 订阅指定topic下所有消息 注意：一个consumer对象可以订阅多个topic
 		 */
 		consumer.subscribe("TopicTest2", "*");
+		consumer.subscribe("TopicTest3", "*");
 		consumer.registerMessageListener(new MessageListenerConcurrently() {
 			/**
 			 * 默认msgs里只有一条消息，可以通过设置consumeMessageBatchMaxSize参数来批量接收消息

@@ -16,7 +16,7 @@ public class Producer {
 		 *  因为服务器会回查这个Group下的任意一个Producer         
 		 */
 		DefaultMQProducer producer = new DefaultMQProducer("ProducerGroupName");
-		producer.setNamesrvAddr("localhost:9876");
+		producer.setNamesrvAddr("127.0.0.1:9876");
 		producer.setInstanceName("Producer");
 		producer.setVipChannelEnabled(false);
 		/**
@@ -33,26 +33,17 @@ public class Producer {
 		for (int i = 0; i < 1; i++) {
 			try {
 				{
-					Message msg = new Message("TopicTest1", //  topic  
-							"TagA", //  tag  
-							"OrderID001", //  key  
-							("Hello MetaQ").getBytes());//  body                      
+					Message msg = new Message("TopicTest1", "TagA", "OrderID001", ("Hello MetaQ").getBytes());
 					SendResult sendResult = producer.send(msg);
 					System.out.println(sendResult);
 				}
 				{
-					Message msg = new Message("TopicTest2", //  topic  
-							"TagB", //  tag  
-							"OrderID0034", //  key  
-							("Hello MetaQ").getBytes());//  body                      
+					Message msg = new Message("TopicTest2", "TagB", "OrderID0034", ("Hello MetaQ").getBytes());
 					SendResult sendResult = producer.send(msg);
 					System.out.println(sendResult);
 				}
 				{
-					Message msg = new Message("TopicTest3", //  topic  
-							"TagC", //  tag  
-							"OrderID061", //  key  
-							("Hello MetaQ").getBytes());//  body                      
+					Message msg = new Message("TopicTest3", "TagC", "OrderID061", ("Hello MetaQ").getBytes());
 					SendResult sendResult = producer.send(msg);
 					System.out.println(sendResult);
 				}
